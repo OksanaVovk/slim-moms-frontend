@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkslim_moms_frontend=self.webpackChunkslim_moms_frontend||[]).push([[191],{6191:function(n,s,e){e.r(s);var i,r=e(168),t=e(6088),u=e(9415),d=e(3329),f=t.Z.div(i||(i=(0,r.Z)(["\n  padding: 40px 20px 0 20px;\n"])));s.default=function(){return(0,d.jsx)(f,{children:(0,d.jsx)(u.Z,{})})}}}]);
+//# sourceMappingURL=191.93b27a3c.chunk.js.map

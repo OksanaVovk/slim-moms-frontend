@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkslim_moms_frontend=self.webpackChunkslim_moms_frontend||[]).push([[196],{4196:function(n,e,r){r.r(e),r.d(e,{default:function(){return s}});var t=r(3329),u=function(){return(0,t.jsx)("div",{children:"Logout"})},s=function(){return(0,t.jsx)(t.Fragment,{children:(0,t.jsx)(u,{})})}}}]);
+//# sourceMappingURL=196.b260947b.chunk.js.map

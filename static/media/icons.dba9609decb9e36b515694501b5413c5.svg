@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+<symbol id="icon-enter-arrow" viewBox="0 0 32 32"><path d="M28.632 7.579v6.737h-22.232l6.063-6.063-2.358-2.358-10.105 10.105 10.105 10.105 2.358-2.358-6.063-6.063h25.6v-10.105z"></path></symbol>
+<symbol id="icon-burger_menu_18x12" viewBox="0 0 48 32"><path d="M0 32h48v-5.333H0V32zm0-13.333h48v-5.333H0v5.333zM0 0v5.333h48V0H0z"/></symbol>
+<symbol id="icon-calendar_18x20" viewBox="0 0 29 32"><path fill="#9b9faa" d="M22.4 14.4h-3.2v3.2h3.2v-3.2zM16 14.4h-3.2v3.2H16v-3.2zM9.6 14.4H6.4v3.2h3.2v-3.2z" style="fill:var(--color1, #9b9faa)"/><path fill="#9b9faa" d="M25.6 3.2H24V0h-3.2v3.2H8V0H4.8v3.2H3.2A3.185 3.185 0 0 0 .016 6.4L0 28.8A3.2 3.2 0 0 0 3.2 32h22.4c1.76 0 3.2-1.44 3.2-3.2V6.4c0-1.76-1.44-3.2-3.2-3.2zm0 25.6H3.2V11.2h22.4v17.6z" style="fill:var(--color1, #9b9faa)"/></symbol>
+<symbol id="icon-cross_delete_12x12" viewBox="0 0 32 32"><path fill="none" stroke="#9b9faa" stroke-width="4.571" d="m2.286 2.286 27.429 27.429M2.286 29.714 29.715 2.285" style="stroke:var(--color1, #9b9faa)"/></symbol>
+<symbol id="icon-cross_exit_12x12" viewBox="0 0 32 32"><path stroke-width="4.571" d="m2.286 2.286 27.429 27.429M2.286 29.714 29.715 2.285"/></symbol>
+<symbol id="icon-cross_exit_14x14" viewBox="0 0 32 32"><path stroke-width="4" d="m2 2 28 28M2 30 30 2"/></symbol>
+<symbol id="icon-exit-icon" viewBox="0 0 32 32"><path d="M25.333 8.546l-1.88-1.88-7.453 7.454-7.453-7.453-1.88 1.878 7.453 7.454-7.453 7.453 1.88 1.88 7.453-7.453 7.453 7.453 1.88-1.88-7.453-7.453 7.453-7.454z"></path></symbol>
+</defs></svg>
