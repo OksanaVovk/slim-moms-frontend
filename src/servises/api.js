@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const apiAxios = axios.create({
-  baseURL: 'https://slim-moms-backend.onrender.com/api/',
+  baseURL: 'http://localhost:5001/',
 });
 
 export const apiToken = {
