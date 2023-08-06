@@ -1,21 +1,11 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
-import { Field, Form } from 'formik';
 
 export const MessageErr = styled.p`
   color: red;
   width: 300px;
   text-align: justify;
   font-weight: 700;
-`;
-
-export const Wrap = styled.div`
-  padding-top: 40px;
-  @media screen and (min-width: 768px) {
-    padding-top: 160px;
-   
-  }
-
 `;
 
 export const Title = styled.h1`
@@ -29,21 +19,20 @@ export const Title = styled.h1`
   }
 `;
 
-export const FormReg = styled(Form)`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+export const FormReg = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   @media screen and (min-width: 768px) {
     align-items: start;
   }
- 
 `;
 
 export const FormList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 40px;
-   margin-bottom: 60px;
+  margin-bottom: 60px;
   @media screen and (min-width: 768px) {
     margin-bottom: 80px;
   }
@@ -62,7 +51,7 @@ export const Label = styled.label`
   font-weight: 700;
 `;
 
-export const Input = styled(Field)`
+export const Input = styled.input`
   height: 20px;
   width: 100%;
   outline: none;
@@ -71,7 +60,7 @@ export const Input = styled(Field)`
   @media screen and (min-width: 768px) {
     max-width: 240px;
   }
-    &:focus,
+  &:focus,
   &:hover {
     outline: none;
   }

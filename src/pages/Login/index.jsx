@@ -8,14 +8,13 @@ const Login = () => {
   const { isLoading } = useAuth();
   return (
     <>
-    <AuthBackground/>
-    <LoginPage>
-      <TitleLogIn>LOG IN</TitleLogIn>
-      <FormLogin />
-      {isLoading && <Loader />}
+      <AuthBackground />
+      <LoginPage>
+        <TitleLogIn>LOG IN</TitleLogIn>
+        <FormLogin />
+        {isLoading && <Loader />}
       </LoginPage>
-      {/* // </AuthBackground> */}
-      </>
+    </>
   );
 };
 

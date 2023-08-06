@@ -1,28 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiToken, apiAxios } from 'servises/api';
-import { creatNotifyError } from 'helpers/createNotify';
+import { creatNotifyError, createNotifySuccess } from 'helpers/createNotify';
 
 const token = apiToken;
 const API = apiAxios;
-// axios.defaults.baseURL = 'http://localhost:5001';
 
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-
-//   unset() {
-//     axios.defaults.headers.common.Authorization = '';
-//   },
-// };
-
-// нащо в реєстрації вертать щось, якщо ми це не використовуємо
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.post('auth/register', credentials);
-      console.log(data.token);
+      createNotifySuccess(
+        `User ${data.data.user.name} successfully registered`
+      );
       return data;
     } catch (error) {
       creatNotifyError(error.message);
@@ -55,6 +45,24 @@ export const logIn = createAsyncThunk(
   }
 );
 
+export const logInGoogle = createAsyncThunk(
+  'auth/logingoogle',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await API.post('auth/logingoogle', credentials);
+      token.set(data.data.token);
+      return data;
+    } catch (error) {
+      creatNotifyError(error.response.data.message);
+      localStorage.setItem(
+        'error-message',
+        JSON.stringify(error.response.data)
+      );
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
@@ -68,9 +76,9 @@ export const fetchCurrentUser = createAsyncThunk(
     try {
       const { data } = await API.get('users/current');
       return data;
-    } catch (err) {
-      creatNotifyError(err.message);
-      return thunkAPI.rejectWithValue(err);
+    } catch (error) {
+      creatNotifyError(error.message);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );

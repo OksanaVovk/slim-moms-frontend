@@ -32,7 +32,7 @@ export const Input = styled(Field)`
   @media screen and (min-width: 768px) {
     max-width: 240px;
   }
-   &:focus,
+  &:focus,
   &:hover {
     outline: none;
   }
@@ -51,4 +51,8 @@ export const ErrorText = styled.p`
   color: red;
   width: 100%;
   text-align: justify;
+`;
+
+export const BoxGoogle = styled.div`
+  margin-top: 30px;
 `;

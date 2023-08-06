@@ -63,7 +63,7 @@ export const RightSideBar = () => {
       </BoxList>
       <BoxList>
         <ListTitle>Food not recommended</ListTitle>
-        {caloricityPerDay > 0 ? (
+        {notRecProducts.length > 0 ? (
           <List>
             {notRecProducts.map(product => (
               <Item key={product._id}>{product.title.ua}</Item>

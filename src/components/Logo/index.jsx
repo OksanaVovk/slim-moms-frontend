@@ -8,7 +8,6 @@ import logo_tablet_2x from '../../images/logo_tablet_2x.webp';
 import logo_mobile_1x from '../../images/logo_mobile_1x.webp';
 import logo_mobile_2x from '../../images/logo_mobile_2x.webp';
 
-// import logo_mobile_2x from '../../images/logo_mobile_2x.webp';
 export const Logo = () => {
   const isLoggedIn = true;
   return (

@@ -14,12 +14,18 @@ import {
 
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { fetchCurrentUser } from 'redux/auth/auth-operations';
 // import { changeUserDate } from '../../redux/bloodDiet/operations';
 // import { toggleModal } from '../../redux/bloodDiet/operations';
-import { getDiet, getDietUser, toggleModal, changeUserDate } from '../../redux/bloodDiet/operations';
+import {
+  getDiet,
+  getDietUser,
+  toggleModal,
+  changeUserDate,
+} from '../../redux/bloodDiet/operations';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { bloodSelectors } from 'redux/bloodDiet/bloodDietSelectors'; 
+import { bloodSelectors } from 'redux/bloodDiet/bloodDietSelectors';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import calculatorSchema from '../../utils/schemas/CalculatorSchema';
 
@@ -76,7 +82,7 @@ export const DailyCaloriesForm = () => {
     setAge('');
     setCurrentWeight('');
     setDesiredWeight('');
-    setBloodType('1');
+    setBloodType('');
   };
 
   const handleSubmit = async event => {
@@ -101,6 +107,11 @@ export const DailyCaloriesForm = () => {
       } catch {
         throw new Error();
       }
+      try {
+        await dispatch(fetchCurrentUser());
+      } catch {
+        console.log(Error);
+      }
     } else {
       try {
         await dispatch(
@@ -112,7 +123,7 @@ export const DailyCaloriesForm = () => {
             bloodType: Number(bloodType),
           })
         );
-        dispatch(
+        await dispatch(
           changeUserDate({
             height: height,
             age: age,

@@ -4,22 +4,19 @@ import { DailyCaloriesForm } from 'components/DailyCaloriesForm';
 import { RightSideBar } from 'components/RightSideBar';
 import { CalculatorStyledPage } from './Calculator.styled';
 import { bloodSelectors } from '../../redux/bloodDiet/bloodDietSelectors';
-
 import { BarBackground } from 'components/BarBackground';
-// import { CalculateCaloriesForm } from 'components/CalculateCaloriesForm';
 
 const Calculator = () => {
   const isLoading = useSelector(bloodSelectors.selectBloodIsLoading);
   return (
     <>
-    <BarBackground/>
+      <BarBackground />
       <CalculatorStyledPage>
         <DailyCaloriesForm />
         {isLoading && <Loader />}
         <RightSideBar />
       </CalculatorStyledPage>
-      {/* </BarBackground> */}
-      </>
+    </>
   );
 };
 

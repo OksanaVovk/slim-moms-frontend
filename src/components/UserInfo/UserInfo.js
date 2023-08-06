@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { logOut } from 'redux/auth/auth-operations';
-// import { authSelectors } from 'redux/auth/auth-selectors';
 import sprite from 'images/icons.svg';
 import { useAuth } from 'hooks/useAuth';
 import {
@@ -59,11 +58,9 @@ export const UserInfo = () => {
   const location = useLocation();
 
   const { user } = useAuth();
-  console.log(user.name);
 
   const isLogout = () => {
     dispatch(logOut());
-    console.log('user is logged out');
   };
 
   return (
@@ -92,7 +89,3 @@ export const UserInfo = () => {
     </UserContainer>
   );
 };
-// UserInfoModal - кнопка+модалка и ссылки
-// NameBox - name +Exit
-// NavLinkBox - отдельно линки, которые вылазят на десктопе
-// UserNameContainer - NameBox+BackLink - на мобилке серый фон, на таблетке с бургер-кнопкой -  флекс

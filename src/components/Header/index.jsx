@@ -8,7 +8,6 @@ import { GlobalContainerStyled } from 'components/SharedLayout/GlobalContainer.s
 export const Header = () => {
   const { isLoggedIn } = useAuth();
 
-  console.log(isLoggedIn);
   return (
     <>
       <HeaderStyled>

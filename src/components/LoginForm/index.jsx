@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Formik, ErrorMessage } from 'formik';
+import { GoogleLogin } from '@react-oauth/google';
+import { logInGoogle } from 'redux/auth/auth-operations';
 import * as yup from 'yup';
-import { FormLogIn, Input, Label, ErrorText } from './LoginForm.styled';
-// import { logIn } from 'redux/login/operations';
+import {
+  FormLogIn,
+  Input,
+  Label,
+  ErrorText,
+  BoxGoogle,
+} from './LoginForm.styled';
 import { logIn } from 'redux/auth/auth-operations';
 import { ButtonAuth, ButtonLinkAuth } from 'components/Button';
 import { Link } from 'react-router-dom';
 import { Box } from 'components/Box';
 import 'react-toastify/dist/ReactToastify.css';
 import { ShowPasswordButton } from 'components/Button/ShowPasswordButton';
+import { Navigate } from 'react-router-dom';
 
 const FormError = ({ name }) => {
   return (
@@ -38,17 +46,34 @@ const initialValues = {
 
 export const FormLogin = () => {
   const [showPassword, setShow] = useState(false);
+  const [user, setUser] = useState('');
+
   const handleClick = () => setShow(!showPassword);
   const dispatch = useDispatch();
 
-  const handleSubmit = ({ email, password }, { resetForm }) => {
-    // const bloodType = JSON.parse(localStorage.getItem('bloodType'));
-    dispatch(logIn({ email, password }));
-    // dispatch(logIn({ email, password, bloodType }));
-
-    resetForm();
-    // localStorage.setItem('bloodType', JSON.stringify(''));
+  const responseMessage = response => {
+    setUser(response);
+    console.log(response);
   };
+  const errorMess = error => {
+    console.log(error);
+  };
+
+  const handleSubmit = ({ email, password }, { resetForm }) => {
+    dispatch(logIn({ email, password }));
+    resetForm();
+  };
+
+  useEffect(() => {
+    if (user) {
+      dispatch(logInGoogle({ credentail: user.credential }));
+    }
+  }, [user, dispatch]);
+
+  const errorMessage = localStorage.getItem('error-message');
+  if (errorMessage) {
+    return <Navigate to="/registration" />;
+  }
 
   return (
     <>
@@ -95,6 +120,14 @@ export const FormLogin = () => {
           </Box>
         </FormLogIn>
       </Formik>
+      <BoxGoogle>
+        <GoogleLogin
+          onSuccess={responseMessage}
+          onError={errorMess}
+          shape="circle"
+          text="Sign in with Google"
+        />
+      </BoxGoogle>
     </>
   );
 };

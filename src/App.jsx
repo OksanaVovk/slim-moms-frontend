@@ -1,11 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { lazy, Suspense, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import { SharedLayout } from './components/SharedLayout';
 import Modal from './components/Modal';
-// import Loader from 'components/Loader/Loader';
 
 import PrivateRoute from 'routes/PrivatRoutes';
 import PublicRoute from 'routes/PublicRoutes';
@@ -49,86 +47,88 @@ export const App = () => {
   }, [showModal]);
 
   return (
-    <>
-      <Global styles={GlobalStyles} />
-      {showModal && <Modal />}
-      {isRefreshing ? (
-        <Loader />
-      ) : (
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route
-              index
-              element={
-                <PublicRoute redirectTo="/diary" restricted>
-                  <MainPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/modal"
-              element={
-                <ErrorRoute>
-                  <ModalPage />
-                </ErrorRoute>
-              }
-            />
-            {/* PRIVATE ROUTES */}
-            <Route
-              path="/logout"
-              element={
-                <PrivateRoute>
-                  <Logout />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/diary"
-              element={
-                <PrivateRoute>
-                  <Diary />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/add"
-              element={
-                <PrivateRoute>
-                  <AddProduct />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/calculator"
-              element={
-                <PrivateRoute>
-                  <Calculator />
-                </PrivateRoute>
-              }
-            />
+    !isRefreshing && (
+      <>
+        <Global styles={GlobalStyles} />
+        {showModal && <Modal />}
+        {isRefreshing ? (
+          <Loader />
+        ) : (
+          <Routes>
+            <Route path="/" element={<SharedLayout />}>
+              <Route
+                index
+                element={
+                  <PublicRoute redirectTo="/diary" restricted>
+                    <MainPage />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/modal"
+                element={
+                  <ErrorRoute>
+                    <ModalPage />
+                  </ErrorRoute>
+                }
+              />
+              {/* PRIVATE ROUTES */}
+              <Route
+                path="/logout"
+                element={
+                  <PrivateRoute redirectTo="/" restricted>
+                    <Logout />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/diary"
+                element={
+                  <PrivateRoute>
+                    <Diary />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/add"
+                element={
+                  <PrivateRoute>
+                    <AddProduct />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/calculator"
+                element={
+                  <PrivateRoute>
+                    <Calculator />
+                  </PrivateRoute>
+                }
+              />
 
-            {/* PUBLICK ROUTES */}
-            <Route
-              path="/login"
-              element={
-                <PublicRoute redirectTo="/diary" restricted>
-                  <Login />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path="/registration"
-              element={
-                <PublicRoute redirectTo="/diary" restricted>
-                  <RegistrationPage />
-                </PublicRoute>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      )}
-      <ToastContainer />
-    </>
+              {/* PUBLICK ROUTES */}
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute redirectTo="/diary" restricted>
+                    <Login />
+                  </PublicRoute>
+                }
+              />
+              <Route
+                path="/registration"
+                element={
+                  <PublicRoute redirectTo="/diary" restricted>
+                    <RegistrationPage />
+                  </PublicRoute>
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          </Routes>
+        )}
+        <ToastContainer />
+      </>
+    )
   );
 };
