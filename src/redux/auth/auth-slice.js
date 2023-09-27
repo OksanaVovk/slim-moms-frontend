@@ -5,11 +5,13 @@ import {
   logIn,
   fetchCurrentUser,
   logInGoogle,
+  refreshTokenApi,
 } from './auth-operations';
 
 const initialState = {
   user: { name: null, email: null },
-  token: null,
+  // token: null,
+  refreshToken: null,
   isLoading: false,
   isLoggedIn: false,
   isRefreshing: false,
@@ -24,7 +26,7 @@ const authSlice = createSlice({
     },
     [register.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;
-      state.token = null;
+      // state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
     },
@@ -36,7 +38,8 @@ const authSlice = createSlice({
     },
     [logIn.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;
-      state.token = action.payload.data.token;
+      // state.token = action.payload.data.token;
+      state.refreshToken = action.payload.data.refreshToken;
       state.isLoggedIn = true;
       state.isLoading = false;
     },
@@ -48,7 +51,8 @@ const authSlice = createSlice({
     },
     [logInGoogle.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;
-      state.token = action.payload.data.token;
+      // state.token = action.payload.data.token;
+      state.refreshToken = action.payload.data.refreshToken;
       state.isLoggedIn = true;
       state.isLoading = false;
     },
@@ -61,12 +65,25 @@ const authSlice = createSlice({
     },
     [logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
-      state.token = null;
+      // state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
     },
     [logOut.rejected]: (state, action) => {
       state.isLoading = false;
+    },
+    [refreshTokenApi.pending]: state => {
+      state.isLoading = true;
+    },
+    [refreshTokenApi.fulfilled]: (state, action) => {
+      // state.token = action.payload.token;
+      state.isLoading = false;
+    },
+    [refreshTokenApi.rejected]: state => {
+      state.user = { name: null, email: null };
+      state.isLoading = false;
+      // state.token = null;
+      state.isLoggedIn = false;
     },
 
     [fetchCurrentUser.pending](state) {

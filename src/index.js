@@ -9,6 +9,9 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './components/Theme';
+// import { injectStore } from 'servises/api';
+// injectStore(store);
+
 const clientId =
   '183537649326-lgcq87ah6lomoonfm4ekmbf1b7o3fn3l.apps.googleusercontent.com';
 

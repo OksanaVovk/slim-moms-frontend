@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { apiAxios } from 'servises/api';
 import { apiToken, apiAxios } from 'servises/api';
 import { creatNotifyError, createNotifySuccess } from 'helpers/createNotify';
+import axios from 'axios';
 
 const token = apiToken;
 const API = apiAxios;
@@ -24,7 +26,8 @@ export const register = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await API.get('auth/logout');
-    token.unset();
+    localStorage.setItem('token', null);
+    // token.unset();
   } catch (error) {
     creatNotifyError(error.message);
     return thunkAPI.rejectWithValue(error.message);
@@ -36,7 +39,8 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.post('auth/login', credentials);
-      token.set(data.data.token);
+      localStorage.setItem('token', data.data.token);
+      // token.set(data.data.token);
       return data;
     } catch (error) {
       creatNotifyError(error.message);
@@ -50,7 +54,8 @@ export const logInGoogle = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.post('auth/logingoogle', credentials);
-      token.set(data.data.token);
+      localStorage.setItem('token', data.data.token);
+      // token.set(data.data.token);
       return data;
     } catch (error) {
       creatNotifyError(error.response.data.message);
@@ -58,6 +63,23 @@ export const logInGoogle = createAsyncThunk(
         'error-message',
         JSON.stringify(error.response.data)
       );
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshTokenApi = createAsyncThunk(
+  'auth/refresh',
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.post(
+        'http://localhost:5001/api/auth/refresh',
+        credentials
+      );
+      console.log(data);
+      return data;
+    } catch (error) {
+      creatNotifyError(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
