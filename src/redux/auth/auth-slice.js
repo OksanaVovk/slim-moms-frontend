@@ -11,7 +11,7 @@ import {
 const initialState = {
   user: { name: null, email: null },
   // token: null,
-  refreshToken: null,
+  // refreshToken: null,
   isLoading: false,
   isLoggedIn: false,
   isRefreshing: false,
@@ -39,7 +39,7 @@ const authSlice = createSlice({
     [logIn.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;
       // state.token = action.payload.data.token;
-      state.refreshToken = action.payload.data.refreshToken;
+      // state.refreshToken = action.payload.data.refreshToken;
       state.isLoggedIn = true;
       state.isLoading = false;
     },
@@ -52,7 +52,7 @@ const authSlice = createSlice({
     [logInGoogle.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;
       // state.token = action.payload.data.token;
-      state.refreshToken = action.payload.data.refreshToken;
+      // state.refreshToken = action.payload.data.refreshToken;
       state.isLoggedIn = true;
       state.isLoading = false;
     },
