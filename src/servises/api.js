@@ -13,7 +13,7 @@ export const apiAxios = axios.create({
   //   'Content-type': 'application/json',
   // },
   // baseURL: 'http://localhost:5001/api/',
-  baseURL: 'http://stellular-mooncake-5f1ff9.netlify.app/api/',
+  baseURL: 'https://slim-moms-backendpart.onrender.com/api/',
 });
 
 export const apiToken = {
@@ -67,7 +67,7 @@ const useAxiosInterceptor = () => {
 
           const data = await axios.get(
             // 'http://localhost:5001/api/auth/refresh',
-            'http://stellular-mooncake-5f1ff9.netlify.app/api/auth/refresh',
+            'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
             {
               withCredentials: true,
             }
