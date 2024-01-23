@@ -12,8 +12,8 @@ export const apiAxios = axios.create({
   // headers: {
   //   'Content-type': 'application/json',
   // },
-  baseURL: 'http://localhost:5001/api/',
-  // baseURL: 'https://slim-moms-backendpart.onrender.com/api/',
+  // baseURL: 'http://localhost:5001/api/',
+  baseURL: 'https://slim-moms-backendpart.onrender.com/api/',
 });
 
 export const apiToken = {
@@ -66,8 +66,8 @@ const useAxiosInterceptor = () => {
           // );
 
           const data = await axios.get(
-            'http://localhost:5001/api/auth/refresh',
-            // 'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
+            // 'http://localhost:5001/api/auth/refresh',
+            'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
             {
               withCredentials: true,
             }
