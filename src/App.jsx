@@ -59,11 +59,7 @@ export const App = () => {
           <Loader />
         ) : (
           <Routes>
-            <Route
-              path="/"
-              basename="/slim-moms-frontend/"
-              element={<SharedLayout />}
-            >
+            <Route path="/" element={<SharedLayout />}>
               <Route
                 index
                 element={
