@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <BrowserRouter basename="/slim-moms-frontend/">
+            <BrowserRouter basename="/slim-moms-frontend">
               <App />
             </BrowserRouter>
           </PersistGate>
