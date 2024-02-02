@@ -63,13 +63,13 @@ export const App = () => {
               <Route
                 index
                 element={
-                  <PublicRoute redirectTo="/diary" restricted>
+                  <PublicRoute redirectTo="diary" restricted>
                     <MainPage />
                   </PublicRoute>
                 }
               />
               <Route
-                path="/modal"
+                path="modal"
                 element={
                   <ErrorRoute>
                     <ModalPage />
@@ -78,7 +78,7 @@ export const App = () => {
               />
               {/* PRIVATE ROUTES */}
               <Route
-                path="/logout"
+                path="logout"
                 element={
                   <PrivateRoute redirectTo="/" restricted>
                     <Logout />
@@ -86,7 +86,7 @@ export const App = () => {
                 }
               />
               <Route
-                path="/diary"
+                path="diary"
                 element={
                   <PrivateRoute>
                     <Diary />
@@ -94,7 +94,7 @@ export const App = () => {
                 }
               />
               <Route
-                path="/add"
+                path="add"
                 element={
                   <PrivateRoute>
                     <AddProduct />
@@ -102,27 +102,26 @@ export const App = () => {
                 }
               />
               <Route
-                path="/calculator"
+                path="calculator"
                 element={
                   <PrivateRoute>
                     <Calculator />
                   </PrivateRoute>
                 }
               />
-
               {/* PUBLICK ROUTES */}
               <Route
-                path="/login"
+                path="login"
                 element={
-                  <PublicRoute redirectTo="/diary" restricted>
+                  <PublicRoute redirectTo="diary" restricted>
                     <Login />
                   </PublicRoute>
                 }
               />
               <Route
-                path="/registration"
+                path="registration"
                 element={
-                  <PublicRoute redirectTo="/diary" restricted>
+                  <PublicRoute redirectTo="diary" restricted>
                     <RegistrationPage />
                   </PublicRoute>
                 }
