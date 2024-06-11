@@ -51,87 +51,87 @@ export const App = () => {
   }, [showModal]);
 
   return (
-    !isRefreshing && (
-      <>
-        <Global styles={GlobalStyles} />
-        {showModal && <Modal />}
-        {isRefreshing ? (
-          <Loader />
-        ) : (
-          <Routes>
-            <Route path="/" element={<SharedLayout />}>
-              <Route
-                index
-                element={
-                  <PublicRoute redirectTo="/diary" restricted>
-                    <MainPage />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="modal"
-                element={
-                  <ErrorRoute>
-                    <ModalPage />
-                  </ErrorRoute>
-                }
-              />
-              {/* PRIVATE ROUTES */}
-              <Route
-                path="logout"
-                element={
-                  <PrivateRoute redirectTo="/" restricted>
-                    <Logout />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="diary"
-                element={
-                  <PrivateRoute>
-                    <Diary />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="add"
-                element={
-                  <PrivateRoute>
-                    <AddProduct />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="calculator"
-                element={
-                  <PrivateRoute>
-                    <Calculator />
-                  </PrivateRoute>
-                }
-              />
-              {/* PUBLICK ROUTES */}
-              <Route
-                path="login"
-                element={
-                  <PublicRoute redirectTo="/diary" restricted>
-                    <Login />
-                  </PublicRoute>
-                }
-              />
-              <Route
-                path="registration"
-                element={
-                  <PublicRoute redirectTo="/diary" restricted>
-                    <RegistrationPage />
-                  </PublicRoute>
-                }
-              />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        )}
-        <ToastContainer />
-      </>
-    )
+    // !isRefreshing && (
+    <>
+      <Global styles={GlobalStyles} />
+      {showModal && <Modal />}
+      {isRefreshing ? (
+        <Loader />
+      ) : (
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route
+              index
+              element={
+                <PublicRoute redirectTo="/diary" restricted>
+                  <MainPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="modal"
+              element={
+                <ErrorRoute>
+                  <ModalPage />
+                </ErrorRoute>
+              }
+            />
+            {/* PRIVATE ROUTES */}
+            <Route
+              path="logout"
+              element={
+                <PrivateRoute redirectTo="/" restricted>
+                  <Logout />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="diary"
+              element={
+                <PrivateRoute>
+                  <Diary />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="add"
+              element={
+                <PrivateRoute>
+                  <AddProduct />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="calculator"
+              element={
+                <PrivateRoute>
+                  <Calculator />
+                </PrivateRoute>
+              }
+            />
+            {/* PUBLICK ROUTES */}
+            <Route
+              path="login"
+              element={
+                <PublicRoute redirectTo="/diary" restricted>
+                  <Login />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="registration"
+              element={
+                <PublicRoute redirectTo="/diary" restricted>
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      )}
+      <ToastContainer />
+    </>
+    // )
   );
 };
