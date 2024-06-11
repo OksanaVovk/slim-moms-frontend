@@ -82,7 +82,7 @@ export const DailyCaloriesForm = () => {
     setAge('');
     setCurrentWeight('');
     setDesiredWeight('');
-    setBloodType('');
+    setBloodType('1');
   };
 
   const handleSubmit = async event => {
