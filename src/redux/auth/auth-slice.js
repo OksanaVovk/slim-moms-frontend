@@ -10,6 +10,7 @@ import {
 
 const initialState = {
   user: { name: null, email: null },
+  token: null,
   isLoading: false,
   isLoggedIn: false,
   isRefreshing: false,
@@ -18,6 +19,13 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    resetAuth(state) {
+      state.user = { name: null, email: null };
+      state.token = null;
+      state.isLoggedIn = false;
+    },
+  },
   extraReducers: {
     [register.pending]: state => {
       state.isLoading = true;
@@ -35,6 +43,7 @@ const authSlice = createSlice({
     },
     [logIn.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.isLoading = false;
     },
@@ -46,6 +55,7 @@ const authSlice = createSlice({
     },
     [logInGoogle.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.isLoading = false;
     },
@@ -58,6 +68,7 @@ const authSlice = createSlice({
     },
     [logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
+      state.token = null;
       state.isLoggedIn = false;
       state.isLoading = false;
     },
@@ -69,6 +80,7 @@ const authSlice = createSlice({
     },
     [refreshTokenApi.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.token = action.payload.data.token;
     },
     [refreshTokenApi.rejected]: state => {
       state.user = { name: null, email: null };
@@ -81,13 +93,16 @@ const authSlice = createSlice({
     },
     [fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload.data.user;
+      state.token = action.payload.data.token;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     },
     [fetchCurrentUser.rejected](state) {
+      state.token = null;
       state.isRefreshing = false;
     },
   },
 });
 
 export default authSlice.reducer;
+export const authActions = authSlice.actions;

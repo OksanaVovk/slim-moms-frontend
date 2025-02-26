@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiToken, apiAxios } from 'servises/api';
 import { creatNotifyError, createNotifySuccess } from 'helpers/createNotify';
 import axios from 'axios';
+import { authActions } from './slice';
 
 const token = apiToken;
 const API = apiAxios;
@@ -25,9 +26,12 @@ export const register = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await API.get('auth/logout');
-    localStorage.setItem('token', null);
+    token.unset();
+    // localStorage.setItem('token', null);
   } catch (error) {
+    token.unset();
     creatNotifyError(error.message);
+    thunkAPI.dispatch(authActions.resetAuth());
     return thunkAPI.rejectWithValue(error.message);
   }
 });
@@ -51,7 +55,8 @@ export const logInGoogle = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.post('auth/logingoogle', credentials);
-      localStorage.setItem('token', data.data.token);
+      // localStorage.setItem('token', data.data.token);
+      token.set(data.data.token);
       return data;
     } catch (error) {
       creatNotifyError(error.response.data.message);
@@ -72,10 +77,12 @@ export const refreshTokenApi = createAsyncThunk(
         'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
         credentials
       );
-      console.log(data);
+      token.set(data.token);
       return data;
     } catch (error) {
       creatNotifyError(error.message);
+      token.unset();
+      thunkAPI.dispatch(authActions.resetAuth());
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -95,6 +102,8 @@ export const fetchCurrentUser = createAsyncThunk(
       const { data } = await API.get('users/current');
       return data;
     } catch (error) {
+      token.unset();
+      thunkAPI.dispatch(authActions.resetAuth());
       creatNotifyError(error.message);
       return thunkAPI.rejectWithValue(error.response.data);
     }
