@@ -26,7 +26,6 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await API.get('auth/logout');
     token.unset();
-    // localStorage.setItem('token', null);
   } catch (error) {
     token.unset();
     creatNotifyError(error.message);
@@ -40,7 +39,6 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.post('auth/login', credentials);
-      // localStorage.setItem('token', data.data.token);
       token.set(data.data.token);
       return data;
     } catch (error) {
@@ -55,7 +53,6 @@ export const logInGoogle = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.post('auth/logingoogle', credentials);
-      // localStorage.setItem('token', data.data.token);
       token.set(data.data.token);
       return data;
     } catch (error) {
@@ -64,23 +61,6 @@ export const logInGoogle = createAsyncThunk(
         'error-message',
         JSON.stringify(error.response.data)
       );
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const refreshTokenApi = createAsyncThunk(
-  'auth/refresh',
-  async (credentials, thunkAPI) => {
-    try {
-      const { data } = await API.post('auth/refresh', credentials);
-      console.log(data);
-      thunkAPI.dispatch(authActions.setNewToken(data.token));
-      return data;
-    } catch (error) {
-      creatNotifyError(error.message);
-      token.unset();
-      thunkAPI.dispatch(authActions.resetAuth());
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -100,8 +80,6 @@ export const fetchCurrentUser = createAsyncThunk(
       const { data } = await API.get('users/current');
       return data;
     } catch (error) {
-      // token.unset();
-      // thunkAPI.dispatch(authActions.resetAuth());
       creatNotifyError(error.message);
       return thunkAPI.rejectWithValue(error.response.data);
     }

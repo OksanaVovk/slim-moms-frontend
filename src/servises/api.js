@@ -1,7 +1,5 @@
 import axios from 'axios';
-// import { useDispatch } from 'react-redux';
-import { logOut } from 'redux/auth/auth-operations';
-//import { refreshTokenApi } from 'redux/auth/auth-operations';
+import { authActions } from 'redux/auth/auth-slice';
 import { store } from '../redux/store';
 
 export const apiAxios = axios.create({
@@ -20,11 +18,8 @@ export const apiToken = {
 };
 
 const useAxiosInterceptor = () => {
-  // const dispatch = useDispatch();
-
   apiAxios.interceptors.request.use(
     async config => {
-      // const token = localStorage.getItem('token');
       const token = store.getState().auth.token;
 
       config.headers.Authorization = token ? `Bearer ${token}` : '';
@@ -55,18 +50,16 @@ const useAxiosInterceptor = () => {
               withCredentials: true,
             }
           );
-          // const data = await refreshTokenApi();
 
           const token = data.data.token;
-
-          // localStorage.setItem('token', token);
+          store.dispatch(authActions.setNewToken(token));
           apiToken.set(token);
 
           // Retry the original request with the new token
           originalRequest.headers.Authorization = `Bearer ${token}`;
           return axios(originalRequest);
         } catch (error) {
-          store.dispatch(logOut());
+          store.dispatch(authActions.resetAuth());
           return Promise.reject(error);
         }
       }

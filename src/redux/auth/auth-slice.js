@@ -5,7 +5,6 @@ import {
   logIn,
   fetchCurrentUser,
   logInGoogle,
-  refreshTokenApi,
 } from './auth-operations';
 
 const initialState = {
@@ -78,18 +77,6 @@ const authSlice = createSlice({
     },
     [logOut.rejected]: (state, action) => {
       state.isLoading = false;
-    },
-    [refreshTokenApi.pending]: state => {
-      state.isLoading = true;
-    },
-    [refreshTokenApi.fulfilled]: (state, action) => {
-      state.isLoading = false;
-      state.token = action.payload.data.token;
-    },
-    [refreshTokenApi.rejected]: state => {
-      state.user = { name: null, email: null };
-      state.isLoading = false;
-      state.isLoggedIn = false;
     },
 
     [fetchCurrentUser.pending](state) {
