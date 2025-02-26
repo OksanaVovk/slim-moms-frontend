@@ -22,17 +22,18 @@ export const apiToken = {
 const useAxiosInterceptor = () => {
   // const dispatch = useDispatch();
 
-  // apiAxios.interceptors.request.use(
-  //   async config => {
-  //     // const token = localStorage.getItem('token');
-  //     const token =
-  //     config.headers.Authorization = token ? `Bearer ${token}` : '';
-  //     return config;
-  //   },
-  //   error => {
-  //     return Promise.reject(error);
-  //   }
-  // );
+  apiAxios.interceptors.request.use(
+    async config => {
+      // const token = localStorage.getItem('token');
+      const token = store.getState().auth.token;
+
+      config.headers.Authorization = token ? `Bearer ${token}` : '';
+      return config;
+    },
+    error => {
+      return Promise.reject(error);
+    }
+  );
 
   // Add a response interceptor
   apiAxios.interceptors.response.use(
