@@ -16,7 +16,7 @@ import { fetchCurrentUser } from 'redux/auth/auth-operations';
 import Loader from 'components/Loader/Loader';
 //Add lazy
 import { bloodSelectors } from 'redux/bloodDiet/bloodDietSelectors';
-import useAxiosInterceptor from 'servises/api';
+// import useAxiosInterceptor from 'servises/api';
 
 const RegistrationPage = lazy(() => import('./pages/RegistrationPage/index'));
 const Login = lazy(() => import('./pages/Login/index'));
@@ -29,7 +29,7 @@ const ModalPage = lazy(() => import('./pages/ModalPage/index'));
 const AddProduct = lazy(() => import('./pages/AddProduct/index'));
 
 export const App = () => {
-  useAxiosInterceptor();
+  // useAxiosInterceptor();
   const dispatch = useDispatch();
   const { isRefreshing, isLoggedIn } = useAuth();
 

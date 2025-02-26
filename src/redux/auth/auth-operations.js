@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiToken, apiAxios } from 'servises/api';
 import { creatNotifyError, createNotifySuccess } from 'helpers/createNotify';
 import axios from 'axios';
-import { authActions } from './slice';
+import { authActions } from './auth-slice';
 
 const token = apiToken;
 const API = apiAxios;
