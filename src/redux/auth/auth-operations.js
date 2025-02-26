@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { apiToken, apiAxios } from 'servises/api';
 import { creatNotifyError, createNotifySuccess } from 'helpers/createNotify';
-import axios from 'axios';
 import { authActions } from './auth-slice';
 
 const token = apiToken;
@@ -74,11 +73,9 @@ export const refreshTokenApi = createAsyncThunk(
   'auth/refresh',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post(
-        'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
-        credentials
-      );
-      token.set(data.token);
+      const { data } = await API.post('auth/refresh', credentials);
+      // token.set(data.token);
+      thunkAPI.dispatch(authActions.setNewToken(data.token));
       return data;
     } catch (error) {
       creatNotifyError(error.message);
@@ -103,8 +100,8 @@ export const fetchCurrentUser = createAsyncThunk(
       const { data } = await API.get('users/current');
       return data;
     } catch (error) {
-      token.unset();
-      thunkAPI.dispatch(authActions.resetAuth());
+      // token.unset();
+      // thunkAPI.dispatch(authActions.resetAuth());
       creatNotifyError(error.message);
       return thunkAPI.rejectWithValue(error.response.data);
     }

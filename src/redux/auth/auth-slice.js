@@ -11,7 +11,6 @@ import {
 const initialState = {
   user: { name: null, email: null },
   token: null,
-  refreshToken: null,
   isLoading: false,
   isLoggedIn: false,
   isRefreshing: false,
@@ -25,6 +24,9 @@ const authSlice = createSlice({
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
+    },
+    setNewToken: (state, action) => {
+      state.token = action.payload;
     },
   },
   extraReducers: {
@@ -45,7 +47,6 @@ const authSlice = createSlice({
     [logIn.fulfilled]: (state, action) => {
       state.user = action.payload.data.user;
       state.token = action.payload.data.token;
-      state.refreshToken = action.payload.data.refreshToken;
       state.isLoggedIn = true;
       state.isLoading = false;
     },
