@@ -74,7 +74,7 @@ export const refreshTokenApi = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.post('auth/refresh', credentials);
-      // token.set(data.token);
+      console.log(data);
       thunkAPI.dispatch(authActions.setNewToken(data.token));
       return data;
     } catch (error) {

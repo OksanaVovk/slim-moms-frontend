@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import { SharedLayout } from './components/SharedLayout';
 import Modal from './components/Modal';
+import { refreshTokenApi } from 'redux/auth/auth-operations';
 
 import PrivateRoute from 'routes/PrivatRoutes';
 import PublicRoute from 'routes/PublicRoutes';
@@ -35,6 +36,7 @@ export const App = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
+      dispatch(refreshTokenApi());
       dispatch(fetchCurrentUser());
     }
   }, [dispatch, isLoggedIn]);

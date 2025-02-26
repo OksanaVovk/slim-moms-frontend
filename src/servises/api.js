@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/auth-operations';
-import { refreshTokenApi } from 'redux/auth/auth-operations';
+//import { refreshTokenApi } from 'redux/auth/auth-operations';
 import { store } from '../redux/store';
 
 export const apiAxios = axios.create({
@@ -49,13 +49,13 @@ const useAxiosInterceptor = () => {
         originalRequest._retry = true;
 
         try {
-          // const data = await axios.get(
-          //   'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
-          //   {
-          //     withCredentials: true,
-          //   }
-          // );
-          const data = await refreshTokenApi();
+          const data = await axios.get(
+            'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
+            {
+              withCredentials: true,
+            }
+          );
+          // const data = await refreshTokenApi();
 
           const token = data.data.token;
 
