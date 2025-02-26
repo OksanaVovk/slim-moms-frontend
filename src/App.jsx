@@ -51,7 +51,6 @@ export const App = () => {
   }, [showModal]);
 
   return (
-    // !isRefreshing && (
     <>
       <Global styles={GlobalStyles} />
       {showModal && <Modal />}

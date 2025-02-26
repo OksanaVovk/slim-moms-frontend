@@ -157,6 +157,8 @@ export const DailyCaloriesForm = () => {
             <Input
               pattern="[0-9]"
               required
+              min={100}
+              max={250}
               id="height"
               type="number"
               name="height"
@@ -169,6 +171,8 @@ export const DailyCaloriesForm = () => {
             <Input
               pattern="[0-9]"
               id="age"
+              min={18}
+              max={100}
               required
               type="number"
               name="age"
@@ -181,6 +185,8 @@ export const DailyCaloriesForm = () => {
             <Input
               pattern="[0-9]"
               required
+              min={20}
+              max={500}
               id="currentWeight"
               type="number"
               name="currentWeight"
@@ -195,6 +201,8 @@ export const DailyCaloriesForm = () => {
             <Input
               pattern="[0-9]"
               id="desiredWeight"
+              min={20}
+              max={500}
               required
               name="desiredWeight"
               type="number"
@@ -208,7 +216,6 @@ export const DailyCaloriesForm = () => {
               <BloodListItem>
                 <RadioButton
                   type="radio"
-                  // checked
                   name="bloodType"
                   id="blood-inp-1"
                   value={1}

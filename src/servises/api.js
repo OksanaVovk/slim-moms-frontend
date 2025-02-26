@@ -2,17 +2,9 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/auth-operations';
 
-//! let store;
-// export const injectStore = _store => {
-//   store = _store;
-// };
-
 export const apiAxios = axios.create({
   withCredentials: true,
-  // headers: {
-  //   'Content-type': 'application/json',
-  // },
-  // baseURL: 'http://localhost:5001/api/',
+
   baseURL: 'https://slim-moms-backendpart.onrender.com/api/',
 });
 
@@ -31,7 +23,6 @@ const useAxiosInterceptor = () => {
   apiAxios.interceptors.request.use(
     async config => {
       const token = localStorage.getItem('token');
-      // const token = useSelector(selectToken);
       config.headers.Authorization = token ? `Bearer ${token}` : '';
       return config;
     },
@@ -54,19 +45,7 @@ const useAxiosInterceptor = () => {
         originalRequest._retry = true;
 
         try {
-          // const dispatch = useDispatch();
-          //! const refreshToken = store.getState().auth.refreshToken;
-          // const response = await store.dispatch(
-          //   refreshTokenApi({ refreshToken })
-          // );
-          // const { token } = response;
-          //! const data = await axios.post(
-          //   'http://localhost:5001/api/auth/refresh',
-          //   { refreshToken }
-          // );
-
           const data = await axios.get(
-            // 'http://localhost:5001/api/auth/refresh',
             'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
             {
               withCredentials: true,

@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { apiAxios } from 'servises/api';
 import { apiToken, apiAxios } from 'servises/api';
 import { creatNotifyError, createNotifySuccess } from 'helpers/createNotify';
 import axios from 'axios';
@@ -27,7 +26,6 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await API.get('auth/logout');
     localStorage.setItem('token', null);
-    // token.unset();
   } catch (error) {
     creatNotifyError(error.message);
     return thunkAPI.rejectWithValue(error.message);
@@ -40,7 +38,6 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await API.post('auth/login', credentials);
       localStorage.setItem('token', data.data.token);
-      // token.set(data.data.token);
       return data;
     } catch (error) {
       creatNotifyError(error.message);
@@ -55,7 +52,6 @@ export const logInGoogle = createAsyncThunk(
     try {
       const { data } = await API.post('auth/logingoogle', credentials);
       localStorage.setItem('token', data.data.token);
-      // token.set(data.data.token);
       return data;
     } catch (error) {
       creatNotifyError(error.response.data.message);
@@ -73,7 +69,7 @@ export const refreshTokenApi = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        'http://localhost:5001/api/auth/refresh',
+        'https://slim-moms-backendpart.onrender.com/api/auth/refresh',
         credentials
       );
       console.log(data);
